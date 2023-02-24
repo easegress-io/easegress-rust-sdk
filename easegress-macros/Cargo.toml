@@ -3,6 +3,7 @@ name = "easegress-macros"
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
+description = "Macros to support the `easegress-sdk` crate and remove FFI boilerplate / conversion from user code."
 
 [lib]
 proc-macro = true
