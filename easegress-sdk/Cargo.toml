@@ -6,6 +6,7 @@ authors = ["Megaease Team <service@megaese.com>"]
 license = "Apache-2.0"
 description = "A Rust SDK for Easegress."
 readme = "../README.md"
+repository = "https://github.com/megaease/easegress-rust-sdk"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
