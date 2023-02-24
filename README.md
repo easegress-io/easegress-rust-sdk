@@ -15,8 +15,8 @@ The following steps assume that [Git](https://git-scm.com/) and [Rust](https://w
 
 1. Clone the repo.
 
-```sh
-git clone https://github.com/LokiWager/easegress-demo
+```bash
+git clone https://github.com/megaease/easegress-rust-demo.git
 ```
 
 2. Implement your extension in `src/lib.rs`. Please check the `examples` directory for more examples.
