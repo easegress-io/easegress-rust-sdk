@@ -1,0 +1,14 @@
+[package]
+name = "easegress-sdk"
+version = "0.1.0"
+edition = "2021"
+authors = ["Megaease Team <service@megaese.com>"]
+license = "Apache-2.0"
+description = "A Rust SDK for Easegress."
+readme = "../README.md"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wee_alloc = "0.4.5"
