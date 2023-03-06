@@ -34,7 +34,7 @@ pub fn expand_macro(tokens: TokenStream) -> syn::Result<TokenStream> {
                         return Err(Error::new_spanned(
                             item,
                             "Impl block must only contain methods",
-                        ))
+                        ));
                     }
                 };
 
@@ -82,16 +82,18 @@ pub fn expand_macro(tokens: TokenStream) -> syn::Result<TokenStream> {
                             params.insert(data.get(i).unwrap().to_owned(), data.get(i + 1).unwrap().to_owned());
                         }
                     }
-                    PROGRAM.with(|t| {
-                        *t.borrow_mut() = #struct_name::new(params);
+
+                    INIT.call_once(|| {
+                        unsafe {
+                            use std::borrow::BorrowMut;
+                            *PROGRAM.borrow_mut() = Some(std::sync::Mutex::new(#struct_name::new(params)));
+                        }
                     });
                 }
 
                 #pound[no_mangle]
                 pub extern "C" fn wasm_run() -> i32 {
-                    PROGRAM.with(|t| {
-                        t.borrow().run()
-                    })
+                    unsafe {PROGRAM.as_ref().unwrap().lock().unwrap().run()}
                 }
             })
         }
@@ -101,7 +103,8 @@ pub fn expand_macro(tokens: TokenStream) -> syn::Result<TokenStream> {
             Ok(quote!(
                 #tokens
 
-                thread_local!(static PROGRAM: std::cell::RefCell<#struct_name> = std::cell::RefCell::new(#struct_name::new(HashMap::<String, String>::new())));
+                static mut PROGRAM: Option<std::sync::Mutex<#struct_name>> = None;
+                static INIT: std::sync::Once = std::sync::Once::new();
             ))
         }
         _ => Err(Error::new(
