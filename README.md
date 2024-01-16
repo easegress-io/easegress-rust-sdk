@@ -1,4 +1,6 @@
 # Easegress Rust SDK
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Feasegress-io%2Feasegress-rust-sdk.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Feasegress-io%2Feasegress-rust-sdk?ref=badge_shield)
+
 
 - [Easegress Rust SDK](#easegress-rust-sdk)
 	- [Prerequisites](#prerequisites)
@@ -78,3 +80,7 @@ If success, it will generate `easegress_demo.wasm` at the `target/wasm32-unknown
 ## Deploy and execute
 
 Please refer to [the documentation of `WasmHost`](https://github.com/megaease/easegress/blob/main/doc/reference/wasmhost.md) for deploying and executing the compiled Wasm code.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Feasegress-io%2Feasegress-rust-sdk.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Feasegress-io%2Feasegress-rust-sdk?ref=badge_large)
